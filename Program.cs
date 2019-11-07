@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Pass_gen_and_manager
 {
@@ -11,6 +12,9 @@ namespace Pass_gen_and_manager
         static void Main(string[] args)
         {
             CommandManager cm = new CommandManager();
+            Directory.CreateDirectory("Saved_data");
+            Directory.CreateDirectory(@"Saved_data\Filters");
+            Directory.CreateDirectory(@"Saved_data\Passwords");
             bool run = true;
             while (run == true) 
             {
@@ -25,13 +29,14 @@ namespace Pass_gen_and_manager
                 }
                 if (command.Equals("?")) 
                 {
-                        Console.WriteLine("Available commands:\n" +
+                    Console.WriteLine("Available commands:\n" +
                             "-password || command for creating, listing and receiving passwords\n" +
                             "-filter || command for listing and previewing password creation filters");
-                        continue;
+                    continue;
                 }
                 cm.send(command, data);
             }
         }
+        
     }
 }

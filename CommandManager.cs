@@ -10,7 +10,13 @@ namespace Pass_gen_and_manager
     {
         public void send(String command, String[] data) 
         {
-            
+            if (data.Length - 1 < 0) 
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Unknown command try ? for help");
+                Console.ResetColor();
+                return;
+            }
             string[] datanew = new string[data.Length-1];
             string subcommand = data[0];
 
@@ -51,7 +57,9 @@ namespace Pass_gen_and_manager
             }
             else 
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("Invalid command use ? for help");
+                Console.ResetColor();
                 return;
             }
         }

@@ -47,7 +47,15 @@ namespace Pass_gen_and_manager
             MemoryStream memoryStream = new MemoryStream(cipherTextBytes);
             CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
             byte[] plainTextBytes = new byte[cipherTextBytes.Length];
-            int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+            int decryptedByteCount;
+            try
+            {
+                decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+            }
+            catch (Exception e) 
+            {
+                return cipherText;
+            }
             memoryStream.Close();
             cryptoStream.Close();
             return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
