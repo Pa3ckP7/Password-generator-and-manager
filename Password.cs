@@ -89,7 +89,6 @@ namespace Pass_gen_and_manager
             {
                 password += filter_data[rng.Next(0, filter_data.Length - 1)];
             }
-            Console.WriteLine(password);
             password = Encrypt.EncryptString(password, key);
             File.WriteAllText($@"{Passwords_directory}\{identifier}",password);
             Console.ForegroundColor = ConsoleColor.Green;
